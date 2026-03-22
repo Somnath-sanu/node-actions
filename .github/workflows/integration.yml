@@ -29,9 +29,12 @@ jobs:
           echo $! > server.pid
           sleep 3
 
-      - name: Test API
+      - name: Test GET 
         run: |
           curl -f http://localhost:8080  
+
+      - name: Test POST
+        run: bun test    
       
       - name: Stop server
         run: |
