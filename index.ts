@@ -5,11 +5,9 @@ const app = express();
 const PORT = 8080;
 
 app.get("/", (req, res) => {
-  res
-    .json({
-      message: "Get request success",
-    })
-    .status(200);
+  res.status(200).json({
+    message: "Get request success",
+  });
 });
 
 app.listen(PORT, () => {

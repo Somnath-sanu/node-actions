@@ -23,5 +23,16 @@ jobs:
       - name: install dependencies    
         run:  bun install
         
-      - name: run the index file
-        run: bun dev
+      - name: Start server
+        run: | 
+          bun dev &
+          echo $! > server.pid
+          sleep 3
+
+      - name: Test API
+        run: |
+          curl -f http://localhost:8080  
+      
+      - name: Stop server
+        run: |
+          kill $(cat server.pid)
