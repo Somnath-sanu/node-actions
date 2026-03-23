@@ -1,15 +1,17 @@
 name: Deployment
 
 on:
+  workflow_dispatch:
   workflow_run:
-    workflows: ["Integration"]
+    workflows: ["Integration"] #Its the name of an workflow
     types:
       - completed
-    branches:
-      - main
+    branches: 
+      - main  
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
